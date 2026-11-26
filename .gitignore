@@ -9,7 +9,6 @@ dataset/
 PlantVillage/
 
 # Trained models and checkpoints
-*.keras
 *.h5
 *.weights.h5
 checkpoints/
