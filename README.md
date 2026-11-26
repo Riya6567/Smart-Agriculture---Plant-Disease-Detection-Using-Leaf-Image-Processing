@@ -1,210 +1,411 @@
-# Smart Agriculture – Plant Disease Detection Using Leaf Image Processing
+# 🌿 Smart Agriculture – Plant Disease Detection Using Leaf Image Processing
 
-An image-processing and deep learning-based project for identifying plant leaf diseases using the PlantVillage dataset and an EfficientNetB0 classification model.
+<div align="center">
 
-## Project Overview
+<img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&h=400&fit=crop" width="100%" alt="Green agricultural fields"/>
 
-Plant diseases can affect crop quality, agricultural productivity, and food security. Early identification of plant diseases can help farmers take appropriate action and reduce potential crop losses.
+### 🌱 Empowering Agriculture Through Image Processing & Artificial Intelligence
 
-This project explores plant disease identification from leaf images using image processing techniques and deep learning. It includes HSV-based leaf segmentation, color and texture feature extraction, and an EfficientNetB0-based image classification model.
+**An intelligent plant disease classification system that analyzes leaf images to identify plant diseases and support smarter agricultural practices.**
 
-The project is implemented using Python and Google Colab.
+<br/>
 
-## Objectives
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![Google Colab](https://img.shields.io/badge/Google_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=black)
 
-- Explore and analyse a plant leaf image dataset.
-- Perform image preprocessing and resizing.
-- Apply HSV-based color segmentation to isolate green leaf regions.
-- Extract color and texture features using HSV histograms and GLCM.
-- Build a plant disease classification model using EfficientNetB0.
-- Train and fine-tune the model using transfer learning.
-- Evaluate model performance using standard classification metrics.
-- Predict the class of a newly uploaded leaf image.
+<br/>
 
-## Technologies and Libraries
+![Status](https://img.shields.io/badge/Project-Completed-brightgreen?style=flat-square)
+![Accuracy](https://img.shields.io/badge/Test_Accuracy-97.32%25-success?style=flat-square)
+![Classes](https://img.shields.io/badge/Classes-15-blue?style=flat-square)
+![Dataset](https://img.shields.io/badge/Dataset-PlantVillage-orange?style=flat-square)
 
-| Technology | Purpose |
+</div>
+
+---
+
+## 🌾 About the Project
+
+Agriculture plays a vital role in our everyday lives. However, plant diseases can significantly affect crop quality, productivity, and agricultural income.
+
+**Smart Agriculture – Plant Disease Detection Using Leaf Image Processing** is an image-based classification project designed to identify plant diseases by analyzing leaf images.
+
+The project combines traditional image processing techniques with deep learning-based image classification to recognize different plant disease categories.
+
+Using the PlantVillage dataset, the system processes leaf images, performs segmentation and feature extraction, and predicts the corresponding plant health or disease category.
+
+### 🎯 Project Objectives
+
+- 🌿 Identify plant diseases from leaf images.
+- 🎨 Apply HSV-based color segmentation for leaf extraction.
+- 🔬 Extract color and texture features from leaf images.
+- 🧠 Develop an image classification model using EfficientNetB0.
+- 📊 Evaluate model performance using standard classification metrics.
+- 🌱 Explore how computer vision can contribute to smart agriculture.
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
 |---|---|
-| Python | Main programming language |
-| Google Colab | Development and execution environment |
-| TensorFlow / Keras | Deep learning and model training |
-| EfficientNetB0 | Transfer learning-based image classification |
-| OpenCV | Image processing and segmentation |
-| NumPy | Numerical operations |
-| Pandas | Dataset organisation |
-| Matplotlib | Data visualisation |
-| Seaborn | Confusion matrix visualisation |
-| Scikit-learn | Dataset splitting and evaluation |
-| Scikit-image | GLCM texture feature extraction |
+| 🌿 Leaf Image Analysis | Processes plant leaf images |
+| 🎨 Color Segmentation | Uses HSV color space to segment leaves |
+| 🔬 Feature Extraction | Extracts HSV color histogram and GLCM texture features |
+| 🧠 Disease Classification | Uses an EfficientNetB0-based model |
+| 📊 Model Evaluation | Calculates accuracy, precision, recall, and F1-score |
+| 🔥 Confusion Matrix | Visualizes classification performance |
+| 🖼️ New Image Prediction | Predicts the disease category of an uploaded leaf image |
+| 💾 Model Saving | Saves the trained model in Keras format |
 
-## Dataset
+---
 
-**Dataset:** PlantVillage Dataset
+## 🛠️ Technologies & Tools
 
-**Source:** [PlantVillage Dataset on Kaggle](https://www.kaggle.com/datasets/arjuntejaswi/plant-village)
+### Programming Language
+- Python
 
-The project notebook uses the Kaggle dataset identifier:
+### Libraries & Frameworks
 
-`arjuntejaswi/plant-village`
+- **OpenCV** – Image processing and segmentation.
+- **NumPy** – Numerical operations.
+- **Pandas** – Dataset organization and manipulation.
+- **Matplotlib** – Data visualization.
+- **Seaborn** – Statistical visualization.
+- **Scikit-image** – GLCM texture feature extraction.
+- **Scikit-learn** – Dataset splitting and evaluation metrics.
+- **TensorFlow / Keras** – Deep learning and model training.
 
-Dataset details in the project run:
+### Development Environment
 
-- Total images: 20,638
-- Number of classes: 15
-- Training images: 14,446
-- Validation images: 3,096
-- Testing images: 3,096
+- Google Colab
+- Kaggle API
+- GitHub
 
-The dataset contains healthy and diseased leaf images from pepper, potato, and tomato plants.
+---
 
-**Note:** The dataset is not included in this repository. Users must obtain it from Kaggle and follow the dataset provider's terms and licensing conditions.
+## 📂 Dataset Information
 
-## Project Workflow
+The project uses the **PlantVillage Dataset**, a publicly available collection of plant leaf images.
 
-The project follows these major steps:
+🔗 **Dataset:** [PlantVillage – Kaggle](https://www.kaggle.com/datasets/arjuntejaswi/plant-village)
 
-1. **Environment Setup:** Import the required libraries and configure the Google Colab environment.
-2. **Dataset Collection:** Configure Kaggle API access and download the PlantVillage dataset.
-3. **Dataset Exploration:** Inspect image folders, identify disease classes, count images, and visualise sample images.
-4. **Dataset Splitting:** Divide the dataset into training (70%), validation (15%), and testing (15%) subsets using stratified splitting.
-5. **Image Preprocessing:** Resize images to 224 × 224 pixels and prepare TensorFlow datasets.
-6. **HSV-Based Segmentation:** Convert leaf images into HSV color space and create a green-region segmentation mask.
-7. **Feature Extraction:** Extract color histogram features from HSV images and texture features using the Gray-Level Co-occurrence Matrix (GLCM).
-8. **Model Building:** Build an EfficientNetB0-based classification model with data augmentation and a classification layer.
-9. **Class Weight Calculation:** Calculate class weights to help address differences in class sample counts.
-10. **Model Training:** Train the classification model using transfer learning.
-11. **Fine-Tuning:** Unfreeze selected EfficientNetB0 layers and continue training with a lower learning rate.
-12. **Model Evaluation:** Evaluate the selected model using accuracy, precision, recall, F1-score, and a confusion matrix.
-13. **New Image Prediction:** Upload a leaf image and predict its class using the trained model.
-14. **Model Saving:** Save the trained model and class-name mapping for later use.
+### 📊 Dataset Statistics
 
-**Methodology note:** HSV segmentation and HSV + GLCM feature extraction are included as separate image-processing demonstrations in the current notebook. The EfficientNetB0 classifier is trained directly on the preprocessed RGB images; the handcrafted feature vector is not concatenated with the EfficientNetB0 input.
+| Category | Details |
+|---|---:|
+| Total Images | 20,638 |
+| Total Classes | 15 |
+| Training Images | 14,446 |
+| Validation Images | 3,096 |
+| Testing Images | 3,096 |
+| Image Input Size | 224 × 224 |
 
-## Model Architecture
+### 🌱 Plant Categories
 
-The classification model uses **EfficientNetB0**, a convolutional neural network pre-trained on ImageNet.
+The dataset covers three plant types:
 
-The model includes:
+- 🍅 Tomato
+- 🥔 Potato
+- 🫑 Pepper (Bell Pepper)
 
-- Pre-trained EfficientNetB0 feature extractor
-- Data augmentation
+It includes healthy leaf categories and different disease categories, such as:
+
+- Early Blight
+- Late Blight
+- Bacterial Spot
+- Leaf Mold
+- Septoria Leaf Spot
+- Target Spot
+- Spider Mites
+- Yellow Leaf Curl Virus
+- Tomato Mosaic Virus
+
+---
+
+## ⚙️ Project Workflow
+
+The project follows a structured image-processing and classification pipeline.
+
+```mermaid
+flowchart TD
+    A["🌿 Plant Leaf Image Dataset"] --> B["📥 Dataset Collection"]
+    B --> C["🔍 Dataset Exploration"]
+    C --> D["✂️ Leaf Segmentation using HSV"]
+    D --> E["🎨 Color Feature Extraction"]
+    E --> F["🔬 Texture Feature Extraction using GLCM"]
+    F --> G["🖼️ Image Preprocessing"]
+    G --> H["🧠 EfficientNetB0 Classification"]
+    H --> I["📊 Model Evaluation"]
+    I --> J["🌱 Disease Prediction"]
+```
+
+### 🔍 Step-by-Step Explanation
+
+**1. Dataset Collection**
+
+Collected plant leaf images from the PlantVillage dataset using the Kaggle API.
+
+**2. Dataset Exploration**
+
+Examined dataset folders, image counts, disease categories, and class distribution.
+
+**3. Leaf Segmentation**
+
+Applied HSV color-space segmentation with morphological operations to identify leaf regions.
+
+**4. Color Feature Extraction**
+
+Extracted color information using HSV color histograms.
+
+**5. Texture Feature Extraction**
+
+Used Gray Level Co-occurrence Matrix (GLCM) to calculate:
+
+- Contrast
+- Homogeneity
+- Energy
+- Correlation
+
+**6. Image Preprocessing**
+
+Resized images to 224 × 224 pixels and prepared training, validation, and testing datasets.
+
+**7. Model Development**
+
+Implemented an EfficientNetB0-based transfer-learning architecture with additional classification layers.
+
+**8. Model Evaluation**
+
+Evaluated the trained model using accuracy, precision, recall, F1-score, and a confusion matrix.
+
+**9. Disease Prediction**
+
+Uploaded a new leaf image and generated the predicted disease category with a confidence score.
+
+---
+
+## 🧠 Model Architecture
+
+The project uses **EfficientNetB0**, a convolutional neural network architecture, with transfer learning.
+
+The classification architecture includes:
+
+- Input Layer (224 × 224 × 3)
+- Data Augmentation
+- EfficientNetB0 Feature Extractor
 - Global Average Pooling
 - Batch Normalization
 - Dropout
-- Softmax classification layer
+- Dense Classification Layer (15 Classes)
 
-The training process is performed in two stages:
+The model was trained in two stages, followed by fine-tuning to improve classification performance.
 
-- **Stage 1 – Transfer Learning:** The pre-trained EfficientNetB0 base layers are frozen while the classification head is trained.
-- **Stage 2 – Fine-Tuning:** The last 30 layers of the base model are made trainable, while Batch Normalization layers remain frozen.
+---
 
-Training callbacks include Early Stopping, ReduceLROnPlateau, and Model Checkpointing.
+## 📈 Model Performance
 
-## Model Performance
+The final model was evaluated using the test dataset.
 
-The following results were recorded in the project notebook:
+<div align="center">
 
-| Evaluation Metric | Result |
-|---|---:|
-| Test Accuracy | 96.74% |
-| Macro Precision | 95.94% |
-| Macro Recall | 96.67% |
-| Macro F1-Score | 96.23% |
+| Evaluation Metric | Score |
+|:---:|:---:|
+| 🏆 **Accuracy** | **97.32%** |
+| 🎯 **Precision (Macro)** | **96.79%** |
+| 📌 **Recall (Macro)** | **97.13%** |
+| ⭐ **F1-Score (Macro)** | **96.91%** |
 
-These are the results from the recorded experiment. Results may vary when the notebook is executed again because of differences in the runtime environment, training process, and model initialisation.
+</div>
 
-## How to Run the Project
+### 📊 Performance Visualization
 
-### 1. Open the Notebook
+The project includes:
 
-Open `Plant_Disease_Detection.ipynb` using Google Colab.
+- Training and validation accuracy graphs.
+- Training and validation loss graphs.
+- Confusion matrix.
+- Classification report.
+- Individual leaf image prediction results.
 
-### 2. Enable GPU
+These visualizations help analyze the model's learning process and classification performance.
 
-In Google Colab:
+---
 
-- Open **Runtime → Change runtime type**.
-- Select **T4 GPU**, if available.
-- Save the runtime settings.
+## 🖼️ Project Demonstration
 
-### 3. Configure Kaggle API
+The project generates several visual outputs during execution.
 
-Create or download your Kaggle API token from your Kaggle account settings.
+### 🌿 Leaf Segmentation
 
-Upload `kaggle.json` when the notebook asks for it.
+The original image is processed using HSV segmentation to generate a segmentation mask and a segmented leaf image.
 
-**Security warning:** Never upload `kaggle.json` to GitHub or share it publicly.
+### 🔬 Feature Extraction
 
-### 4. Run the Notebook
+Color and texture characteristics are extracted from leaf images to explore their visual properties.
 
-Execute the notebook cells in order, starting from Environment Setup and continuing through Model Saving.
+### 🧠 Disease Prediction
 
-The notebook installs the required libraries, downloads the dataset, prepares the images, trains the model, evaluates its performance, and supports prediction on a new leaf image.
+The system accepts a new leaf image and displays:
 
-### 5. Test a New Image
+- Original leaf image.
+- Predicted disease category.
+- Model confidence score.
 
-At the prediction section, upload a leaf image when prompted. The model will display the predicted class and its confidence score.
-
-## Repository Structure
+**Example prediction from the project execution:**
 
 ```text
-Plant-Disease-Detection/
-│
-├── README.md
-├── Plant_Disease_Detection.ipynb
-├── requirements.txt
-├── .gitignore
-│
-├── results/
-│   ├── class_distribution.png
-│   ├── segmentation_result.png
-│   ├── training_graph.png
-│   └── confusion_matrix.png
-│
-└── docs/
-    └── project_report.pdf
+===== PLANT DISEASE DETECTION =====
+
+Predicted Class: Pepper__bell___Bacterial_spot
+
+Model Confidence Score: 100.00%
 ```
 
-The `results/` and `docs/` folders are optional. Add them only when the corresponding files are available.
+*Note: This is an example result from the project execution, not a guarantee of accuracy for every new image.*
 
-## Limitations
+---
 
-- The model recognises only the 15 classes included in the training dataset.
-- It may not correctly identify diseases that are not represented in the dataset.
-- PlantVillage images may differ from real-world field images in lighting, background, and image quality.
-- The confidence score is a model output and should not be treated as a guarantee of diagnosis.
-- The HSV segmentation method focuses on green regions and may exclude some yellow or brown disease-affected areas.
-- The current handcrafted color and texture features are not integrated into the EfficientNetB0 classifier.
+## 💻 How to Run the Project
 
-## Future Improvements
+The project is implemented using Google Colab.
 
-- Test the model on leaf images captured in real agricultural environments.
-- Explore additional plant disease datasets.
-- Improve segmentation to preserve disease-affected leaf regions.
-- Experiment with other CNN architectures.
-- Integrate handcrafted color and texture features into a hybrid classification pipeline.
-- Develop a simple web application for uploading leaf images and viewing predictions.
+### Step 1: Open the Notebook
 
-## Applications
+Open the project notebook in Google Colab.
 
-- Educational demonstration of digital image processing.
-- Plant leaf image classification.
-- Experimentation with transfer learning.
-- Agricultural disease identification research.
+### Step 2: Install Dependencies
 
-## Author
+Run the installation commands provided in the notebook.
 
-**Riya Dey**
+### Step 3: Configure Kaggle API
 
-BCA Honours – Computational Sciences
+Upload your `kaggle.json` API token to Google Colab.
 
-## Acknowledgements
+**Important:** Never upload your Kaggle API token or other private credentials to GitHub.
 
-- PlantVillage dataset contributors.
-- TensorFlow and Keras documentation.
-- OpenCV and Scikit-image communities.
-- Scikit-learn documentation.
+### Step 4: Download the Dataset
 
-## Disclaimer
+The notebook downloads the PlantVillage dataset using the Kaggle API.
 
-This project is developed for educational and academic purposes. Its predictions should not replace professional agricultural inspection or expert plant disease diagnosis.
+### Step 5: Execute the Notebook
+
+Run the notebook cells in sequence to perform:
+
+- Dataset exploration
+- Image preprocessing
+- Leaf segmentation
+- Feature extraction
+- Model training
+- Model evaluation
+- Disease prediction
+
+### Step 6: Upload a Leaf Image
+
+Upload a new plant leaf image to test the trained classification model.
+
+---
+
+## 📁 Repository Structure
+
+```text
+Smart-Agriculture-Plant-Disease-Detection/
+│
+├── 📓 Plant_Disease_Detection_Final.pdf
+│
+├── 📄 README.md
+│
+├── 📄 requirements.txt
+│
+├── 📄 .gitignore
+│
+└── 📂 results/                 (Optional)
+    ├── confusion_matrix.png
+    ├── accuracy_graph.png
+    ├── loss_graph.png
+    └── prediction_result.png
+```
+
+*The results folder is optional. Add it if you upload your generated project visualizations.*
+
+---
+
+## 🌍 Real-World Applications
+
+This project demonstrates how image processing and machine learning can be applied in agriculture.
+
+Potential applications include:
+
+- 🌱 Early identification of plant disease symptoms.
+- 🚜 Supporting farmers in crop monitoring.
+- 🌾 Assisting agricultural researchers.
+- 📱 Development of smart farming applications.
+- 🌍 Promoting technology-driven agricultural practices.
+
+**Note:** This is an academic project and its predictions should not replace professional agricultural diagnosis.
+
+---
+
+## 🚀 Future Improvements
+
+Some possible enhancements include:
+
+- 📱 Developing a mobile application for farmers.
+- 🌐 Creating a web-based disease detection platform.
+- 📷 Supporting real-time camera-based leaf analysis.
+- 🌿 Expanding the dataset to cover more plant species.
+- 🔬 Improving performance on real-world images with complex backgrounds.
+- 💡 Providing disease management and treatment recommendations.
+
+---
+
+## 🎓 Project Information
+
+| Details | Information |
+|---|---|
+| Project Title | Smart Agriculture – Plant Disease Detection Using Leaf Image Processing |
+| Project Number | Project 4 |
+| Project Type | Individual Academic Project |
+| Domain | Image Processing & Computer Vision |
+| Programming Language | Python |
+| Platform | Google Colab |
+| Dataset | PlantVillage |
+
+---
+
+## 👩‍💻 Author
+
+<div align="center">
+
+### 🌸 Riya Dey
+
+**BCA (Hons.) – Computational Sciences**
+
+Interested in Python Programming, Image Processing, Computer Vision, and Artificial Intelligence.
+
+</div>
+
+---
+
+## 💚 Final Thoughts
+
+Technology and agriculture can work together to create a smarter and more sustainable future.
+
+This project represents an exploration of how image processing and artificial intelligence can help identify plant diseases through leaf image analysis.
+
+**🌱 Healthy Plants. 🌾 Smarter Farming. 🌍 Better Future.**
+
+---
+
+<div align="center">
+
+### 🌿 THANK YOU FOR VISITING! 🌿
+
+**If you find this project interesting, don't forget to give it a ⭐ Star!**
+
+Made with 💚 and Python 🐍
+
+</div>
