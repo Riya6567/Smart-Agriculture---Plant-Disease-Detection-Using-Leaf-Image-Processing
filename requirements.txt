@@ -1,0 +1,9 @@
+tensorflow
+opencv-python-headless
+scikit-image
+scikit-learn
+numpy
+pandas
+matplotlib
+seaborn
+kaggle
