@@ -131,39 +131,44 @@ It includes healthy leaf categories and different disease categories, such as:
 The project follows a structured image-processing and classification pipeline.
 
 ```mermaid
-flowchart TD
-    A["🌿 Plant Leaf Image Dataset"] --> B["📥 Dataset Collection"]
-    B --> C["🔍 Dataset Exploration"]
-    C --> D["✂️ Leaf Segmentation using HSV"]
-    D --> E["🎨 Color Feature Extraction"]
-    E --> F["🔬 Texture Feature Extraction using GLCM"]
-    F --> G["🖼️ Image Preprocessing"]
-    G --> H["🧠 EfficientNetB0 Classification"]
-    H --> I["📊 Model Evaluation"]
-    I --> J["🌱 Disease Prediction"]
-```
 
+flowchart TD
+    A["PlantVillage Dataset"] --> B["Dataset Exploration"]
+    B --> C["Train Validation Test Split"]
+    C --> D["Image Loading and Resizing"]
+    D --> E["Data Augmentation"]
+    E --> F["EfficientNetB0 Model"]
+    F --> G["Model Training and Fine Tuning"]
+    G --> H["Model Evaluation"]
+    H --> I["Plant Disease Prediction"]
+
+    A --> J["Sample Leaf Image Analysis"]
+    J --> K["HSV Leaf Segmentation"]
+    K --> L["HSV Color Histogram"]
+    K --> M["GLCM Texture Features"]
+
+```
 ### 🔍 Step-by-Step Explanation
 
 **1. Dataset Collection**
 
 Collected plant leaf images from the PlantVillage dataset using the Kaggle API.
 
-**2. Dataset Exploration**
+**2. Dataset Exploration and Splitting**
 
-Examined dataset folders, image counts, disease categories, and class distribution.
+Examined image counts and class distribution, then divided the dataset into training, validation, and testing sets.
 
-**3. Leaf Segmentation**
+**3. HSV-Based Leaf Segmentation**
 
-Applied HSV color-space segmentation with morphological operations to identify leaf regions.
+Applied HSV color-space segmentation with morphological operations to identify green leaf regions and generate segmentation masks.
 
 **4. Color Feature Extraction**
 
-Extracted color information using HSV color histograms.
+Extracted HSV color histograms from sample leaf images to analyze their color characteristics.
 
 **5. Texture Feature Extraction**
 
-Used Gray Level Co-occurrence Matrix (GLCM) to calculate:
+Used Gray Level Co-occurrence Matrix (GLCM) to calculate texture properties:
 
 - Contrast
 - Homogeneity
@@ -172,11 +177,11 @@ Used Gray Level Co-occurrence Matrix (GLCM) to calculate:
 
 **6. Image Preprocessing**
 
-Resized images to 224 × 224 pixels and prepared training, validation, and testing datasets.
+Resized RGB images to 224 × 224 pixels and prepared TensorFlow datasets for model training.
 
 **7. Model Development**
 
-Implemented an EfficientNetB0-based transfer-learning architecture with additional classification layers.
+Implemented an EfficientNetB0-based transfer-learning model with data augmentation and additional classification layers.
 
 **8. Model Evaluation**
 
@@ -184,8 +189,9 @@ Evaluated the trained model using accuracy, precision, recall, F1-score, and a c
 
 **9. Disease Prediction**
 
-Uploaded a new leaf image and generated the predicted disease category with a confidence score.
+Uploaded a new leaf image and generated its predicted disease category with a confidence score.
 
+**Note:** HSV segmentation and color-texture feature extraction are separate image-processing analyses. The EfficientNetB0 classifier uses resized RGB images as its input.
 ---
 
 ## 🧠 Model Architecture
@@ -203,6 +209,17 @@ The classification architecture includes:
 - Dense Classification Layer (15 Classes)
 
 The model was trained in two stages, followed by fine-tuning to improve classification performance.
+
+---
+
+### 💾 Trained Model Files
+
+The trained model and class-name mapping are saved in the `models/` directory.
+
+- **plant_disease_model.keras:** Contains the trained EfficientNetB0-based plant disease classification model.
+- **class_names.json:** Stores the class labels used to interpret the model's prediction outputs.
+
+These files allow users to load the saved model and perform predictions without training the model again.
 
 ---
 
@@ -324,7 +341,7 @@ Upload a new plant leaf image to test the trained classification model.
 ```text
 Smart-Agriculture-Plant-Disease-Detection/
 │
-├── 📓 Plant_Disease_Detection_Final.ipynb
+├── 📓 Plant_Disease_Detection.ipynb
 │
 ├── 📄 README.md
 │
@@ -332,11 +349,15 @@ Smart-Agriculture-Plant-Disease-Detection/
 │
 ├── 📄 .gitignore
 │
+└── 📂 models/                 
+|   ├── class_names.json
+|   └── plant_disease_model.keras
+|
 └── 📂 results/                 
-    ├── accuracy_graph.png
+    ├── accuracy.png
     ├── confusion_matrix.png
-    ├── loss_graph.png
-    ├── prediction_result.png
+    ├── loss.png
+    ├── prediction_results.png
     └── segmentation.png
 ```
 ---
